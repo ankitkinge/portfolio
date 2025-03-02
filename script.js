@@ -22,7 +22,6 @@ window.addEventListener('scroll', () => {
 
 // Mobile Navigation
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize mobile navigation
     initMobileNavigation();
 });
 
@@ -32,7 +31,7 @@ function initMobileNavigation() {
     const body = document.body;
 
     // Ensure hamburger is visible on mobile
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 480) {
         hamburger.style.display = 'flex';
     }
 
@@ -76,7 +75,7 @@ function initMobileNavigation() {
 
     // Handle resize events
     window.addEventListener('resize', () => {
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 480) {
             hamburger.style.display = 'flex';
         } else {
             hamburger.style.display = 'none';
