@@ -211,4 +211,22 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+// Ensure hamburger menu is always visible on mobile
+window.addEventListener('resize', () => {
+    const hamburger = document.querySelector('.hamburger');
+    if (window.innerWidth <= 768) {
+        hamburger.style.display = 'block';
+    } else {
+        hamburger.style.display = 'none';
+    }
+});
+
+// Initialize hamburger visibility on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    if (window.innerWidth <= 768) {
+        hamburger.style.display = 'block';
+    }
+});
+
 createParticleBackground();

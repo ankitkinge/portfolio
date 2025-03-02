@@ -955,6 +955,225 @@ h2::after {
     }
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 1000;
+    cursor: pointer;
+    background: white;
+    padding: 12px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    section {
+        padding: 4rem 5%;
+    }
+
+    .hero-container {
+        padding: 0 2rem;
+    }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 3rem 1rem;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hero-container {
+        flex-direction: column-reverse;
+        padding: 1rem;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2rem;
+    }
+
+    .hero-text p {
+        font-size: 1.1rem;
+    }
+
+    .profile-image {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto 2rem;
+    }
+
+    .about-content {
+        text-align: center;
+    }
+
+    .about-image img {
+        height: 250px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project-card {
+        max-width: 100%;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .contact-form, .contact-info {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    section {
+        padding: 2rem 1rem;
+    }
+
+    .hamburger {
+        display: block;
+        top: 10px;
+        right: 10px;
+        padding: 10px;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-text p {
+        font-size: 1rem;
+    }
+
+    .profile-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    .about-stats {
+        padding: 1rem;
+    }
+
+    .stat-item {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .skill-card {
+        padding: 1rem;
+    }
+
+    .skill-card h3 {
+        font-size: 1rem;
+    }
+
+    .project-card {
+        padding: 1rem;
+    }
+
+    .project-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .project-info p {
+        font-size: 0.9rem;
+    }
+
+    .project-tags span {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ensure mobile nav is properly styled */
+.mobile-nav {
+    padding-top: 60px;
+}
+
+.mobile-nav a {
+    font-size: 1.1rem;
+    padding: 15px 20px;
+    margin: 8px 0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav a:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateX(10px);
+}
+
+.mobile-nav a.active {
+    background: var(--primary-color);
+    color: white;
+}
+
 /* Mobile Navigation Sidebar */
 .mobile-nav {
     position: fixed;
@@ -1010,7 +1229,7 @@ h2::after {
     height: 3px;
     background-color: var(--text-color);
     margin: 5px 0;
-    transition: 0.4s;
+    transition: var(--transition);
     border-radius: 3px;
 }
 
