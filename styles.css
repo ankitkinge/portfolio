@@ -45,8 +45,12 @@ body {
     color: var(--primary-color);
 }
 
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
 .nav-links a {
-    margin-left: 2rem;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
@@ -59,6 +63,31 @@ body {
 
 .nav-links a.active {
     color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .logo {
+        font-size: 1.2rem;
+    }
+}
+
+/* Hide navbar completely on very small screens */
+@media (max-width: 480px) {
+    .navbar {
+        display: none;
+    }
+    
+    .hamburger {
+        top: 10px;
+    }
 }
 
 /* Hero Section */
@@ -934,7 +963,7 @@ h2::after {
     width: 300px;
     height: 100vh;
     background: linear-gradient(135deg, #ffffff 0%, #f0f2f5 100%);
-    padding: 80px 20px 20px;
+    padding: 40px 20px 20px;
     transition: 0.3s ease-in-out;
     z-index: 999;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
@@ -965,12 +994,12 @@ h2::after {
 .hamburger {
     display: none;
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     z-index: 1000;
     cursor: pointer;
     background: white;
-    padding: 10px;
+    padding: 12px;
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -1024,5 +1053,24 @@ h2::after {
 
     .nav-links {
         display: none;
+    }
+
+    .mobile-nav {
+        padding-top: 60px;
+    }
+
+    .mobile-nav a {
+        text-align: left;
+        font-size: 1.1rem;
+        padding: 15px 20px;
+        margin: 5px 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-nav a:active {
+        background: var(--primary-color);
+        color: white;
     }
 }
