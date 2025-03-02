@@ -20,14 +20,53 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-// Mobile menu toggle
-const hamburger = document.querySelector('.hamburger');
-const navLinks = document.querySelector('.nav-links');
+// Mobile Navigation
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const body = document.body;
 
-hamburger.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-    hamburger.classList.toggle('active');
+    function toggleMenu() {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('open');
+        body.classList.toggle('nav-open');
+
+        // Create or toggle overlay
+        let overlay = document.querySelector('.mobile-nav-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.className = 'mobile-nav-overlay';
+            document.body.appendChild(overlay);
+            overlay.addEventListener('click', toggleMenu);
+        }
+        overlay.classList.toggle('active');
+
+        // Toggle body scroll
+        body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
+    }
+
+    // Add click event to hamburger
+    hamburger.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking a link
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (mobileNav.classList.contains('open')) {
+                toggleMenu();
+            }
+        });
+    });
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+            toggleMenu();
+        }
+    });
 });
+
+// Mobile menu toggle
+const navLinks = document.querySelector('.nav-links');
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -159,57 +198,7 @@ const createParticleBackground = () => {
     }
 };
 
-function toggleMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-    const overlay = document.querySelector('.mobile-nav-overlay');
-    const body = document.body;
-
-    hamburger.classList.toggle('active');
-    mobileNav.classList.toggle('open');
-    
-    // Toggle overlay
-    if (!overlay) {
-        const newOverlay = document.createElement('div');
-        newOverlay.className = 'mobile-nav-overlay';
-        document.body.appendChild(newOverlay);
-        
-        // Add click event to close menu when clicking overlay
-        newOverlay.addEventListener('click', toggleMenu);
-    } else {
-        overlay.classList.toggle('active');
-    }
-
-    // Toggle body scroll
-    body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
-}
-
-// Close mobile menu when clicking a link
-document.querySelectorAll('.mobile-nav a').forEach(link => {
-    link.addEventListener('click', () => {
-        const hamburger = document.querySelector('.hamburger');
-        const mobileNav = document.getElementById('mobileNav');
-        const overlay = document.querySelector('.mobile-nav-overlay');
-        const body = document.body;
-
-        hamburger.classList.remove('active');
-        mobileNav.classList.remove('open');
-        if (overlay) {
-            overlay.classList.remove('active');
-        }
-        body.style.overflow = '';
-    });
-});
-
-// Close menu on escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        const mobileNav = document.getElementById('mobileNav');
-        if (mobileNav.classList.contains('open')) {
-            toggleMenu();
-        }
-    }
-});
+createParticleBackground();
 
 // Ensure hamburger menu is always visible on mobile
 window.addEventListener('resize', () => {
@@ -228,5 +217,3 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.style.display = 'block';
     }
 });
-
-createParticleBackground();
