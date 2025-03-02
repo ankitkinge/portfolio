@@ -30,8 +30,8 @@ function initMobileNavigation() {
     const mobileNav = document.getElementById('mobileNav');
     const body = document.body;
 
-    // Ensure hamburger is visible on mobile
-    if (window.innerWidth <= 480) {
+    // Force hamburger visibility on mobile
+    if (window.matchMedia('(max-width: 480px)').matches) {
         hamburger.style.display = 'flex';
     }
 
@@ -74,17 +74,17 @@ function initMobileNavigation() {
     });
 
     // Handle resize events
-    window.addEventListener('resize', () => {
-        if (window.innerWidth <= 480) {
-            hamburger.style.display = 'flex';
-        } else {
-            hamburger.style.display = 'none';
-            // Close mobile nav if open
-            if (mobileNav.classList.contains('open')) {
-                toggleMenu();
-            }
+    const mobileMediaQuery = window.matchMedia('(max-width: 480px)');
+    
+    function handleMobileChange(e) {
+        hamburger.style.display = e.matches ? 'flex' : 'none';
+        if (!e.matches && mobileNav.classList.contains('open')) {
+            toggleMenu();
         }
-    });
+    }
+
+    mobileMediaQuery.addListener(handleMobileChange);
+    handleMobileChange(mobileMediaQuery);
 }
 
 // Mobile menu toggle
