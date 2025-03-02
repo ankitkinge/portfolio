@@ -22,9 +22,19 @@ window.addEventListener('scroll', () => {
 
 // Mobile Navigation
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize mobile navigation
+    initMobileNavigation();
+});
+
+function initMobileNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.getElementById('mobileNav');
     const body = document.body;
+
+    // Ensure hamburger is visible on mobile
+    if (window.innerWidth <= 768) {
+        hamburger.style.display = 'flex';
+    }
 
     function toggleMenu() {
         hamburger.classList.toggle('active');
@@ -63,7 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleMenu();
         }
     });
-});
+
+    // Handle resize events
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768) {
+            hamburger.style.display = 'flex';
+        } else {
+            hamburger.style.display = 'none';
+            // Close mobile nav if open
+            if (mobileNav.classList.contains('open')) {
+                toggleMenu();
+            }
+        }
+    });
+}
 
 // Mobile menu toggle
 const navLinks = document.querySelector('.nav-links');
@@ -199,21 +222,3 @@ const createParticleBackground = () => {
 };
 
 createParticleBackground();
-
-// Ensure hamburger menu is always visible on mobile
-window.addEventListener('resize', () => {
-    const hamburger = document.querySelector('.hamburger');
-    if (window.innerWidth <= 768) {
-        hamburger.style.display = 'block';
-    } else {
-        hamburger.style.display = 'none';
-    }
-});
-
-// Initialize hamburger visibility on page load
-document.addEventListener('DOMContentLoaded', () => {
-    const hamburger = document.querySelector('.hamburger');
-    if (window.innerWidth <= 768) {
-        hamburger.style.display = 'block';
-    }
-});
