@@ -158,5 +158,8 @@ const createParticleBackground = () => {
         hero.appendChild(particle);
     }
 };
-
+function toggleMenu() {
+    let mobileNav = document.getElementById("mobileNav");
+    mobileNav.classList.toggle("open");
+}
 createParticleBackground();
