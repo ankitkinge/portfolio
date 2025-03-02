@@ -955,39 +955,86 @@ h2::after {
     }
 }
 
+/* Mobile Navigation Sidebar */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100vh;
+    background: white;
+    padding-top: 60px;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    overflow-y: auto;
+}
+
+.mobile-nav.open {
+    transform: translateX(-280px);
+}
+
+.mobile-nav a {
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    border-left: 3px solid transparent;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a.active {
+    background: rgba(var(--primary-color-rgb), 0.1);
+    border-left: 3px solid var(--primary-color);
+    padding-left: 30px;
+}
+
+.mobile-nav a i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
 /* Hamburger Menu */
 .hamburger {
     position: fixed;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
     z-index: 1000;
     cursor: pointer;
     background: white;
-    padding: 8px;
+    padding: 10px;
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
-    width: 35px;
-    height: 35px;
-    display: flex;
+    width: 40px;
+    height: 40px;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 4px;
+    gap: 5px;
 }
 
 .hamburger span {
     display: block;
-    width: 20px;
+    width: 22px;
     height: 2px;
     background-color: var(--text-color);
-    transition: var(--transition);
+    transition: all 0.3s ease;
     border-radius: 2px;
 }
 
-/* Hamburger Animation */
+.hamburger.active {
+    right: 290px;
+}
+
 .hamburger.active span:nth-child(1) {
-    transform: rotate(-45deg) translate(-4px, 4px);
+    transform: rotate(-45deg) translate(-5px, 5px);
 }
 
 .hamburger.active span:nth-child(2) {
@@ -995,106 +1042,75 @@ h2::after {
 }
 
 .hamburger.active span:nth-child(3) {
-    transform: rotate(45deg) translate(-4px, -4px);
+    transform: rotate(45deg) translate(-5px, -5px);
 }
 
-/* Desktop styles */
-@media (min-width: 481px) {
-    .hamburger {
-        display: none;
-    }
+/* Overlay */
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
-/* Mobile styles */
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Media Queries */
 @media (max-width: 480px) {
     .nav-links {
         display: none;
     }
-}
-
-/* Extra small screen adjustments */
-@media (max-width: 320px) {
+    
     .hamburger {
-        width: 32px;
-        height: 32px;
-        padding: 6px;
-    }
-
-    .hamburger span {
-        width: 18px;
-    }
-}
-
-/* Mobile Navigation */
-@media (min-width: 481px) {
-    .hamburger {
-        display: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .hamburger {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
+        display: flex;
     }
 
     .mobile-nav {
-        padding-top: 60px;
+        width: 260px;
+        right: -260px;
+    }
+
+    .mobile-nav.open {
+        transform: translateX(-260px);
+    }
+
+    .hamburger.active {
+        right: 270px;
     }
 
     .mobile-nav a {
-        text-align: left;
-        font-size: 1.1rem;
-        padding: 15px 20px;
-        margin: 5px 0;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-    }
-
-    .mobile-nav a:active {
-        background: var(--primary-color);
-        color: white;
+        padding: 12px 20px;
+        font-size: 1rem;
     }
 }
 
-/* Mobile Navigation Sidebar */
-.mobile-nav {
-    position: fixed;
-    top: 0;
-    right: -300px;
-    width: 300px;
-    height: 100vh;
-    background: linear-gradient(135deg, #ffffff 0%, #f0f2f5 100%);
-    padding: 40px 20px 20px;
-    transition: 0.3s ease-in-out;
-    z-index: 999;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-}
+@media (max-width: 320px) {
+    .mobile-nav {
+        width: 240px;
+        right: -240px;
+    }
 
-.mobile-nav.open {
-    right: 0;
-}
+    .mobile-nav.open {
+        transform: translateX(-240px);
+    }
 
-.mobile-nav a {
-    display: block;
-    padding: 15px 20px;
-    color: var(--text-color);
-    text-decoration: none;
-    font-size: 1.1rem;
-    margin: 10px 0;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-}
+    .hamburger.active {
+        right: 250px;
+    }
 
-.mobile-nav a:hover {
-    background: var(--primary-color);
-    color: white;
-    transform: translateX(10px);
+    .mobile-nav a {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+    }
 }
 
 /* Responsive Styles */
@@ -1289,21 +1305,51 @@ h2::after {
     }
 }
 
-/* Overlay for mobile nav */
-.mobile-nav-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+/* Extra small screen adjustments */
+@media (max-width: 320px) {
+    .hamburger {
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+    }
+
+    .hamburger span {
+        width: 18px;
+    }
 }
 
-.mobile-nav-overlay.active {
-    display: block;
-    opacity: 1;
+/* Mobile Navigation */
+@media (min-width: 481px) {
+    .hamburger {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .mobile-nav {
+        padding-top: 60px;
+    }
+
+    .mobile-nav a {
+        text-align: left;
+        font-size: 1.1rem;
+        padding: 15px 20px;
+        margin: 5px 0;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-nav a:active {
+        background: var(--primary-color);
+        color: white;
+    }
 }

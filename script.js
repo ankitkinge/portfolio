@@ -29,33 +29,33 @@ function initMobileNavigation() {
     const hamburger = document.querySelector('.hamburger');
     const mobileNav = document.getElementById('mobileNav');
     const body = document.body;
+    let overlay = document.querySelector('.mobile-nav-overlay');
 
-    // Force hamburger visibility on mobile
-    if (window.matchMedia('(max-width: 480px)').matches) {
-        hamburger.style.display = 'flex';
+    // Create overlay if it doesn't exist
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'mobile-nav-overlay';
+        document.body.appendChild(overlay);
     }
+
+    // Set active link
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
 
     function toggleMenu() {
         hamburger.classList.toggle('active');
         mobileNav.classList.toggle('open');
-        body.classList.toggle('nav-open');
-
-        // Create or toggle overlay
-        let overlay = document.querySelector('.mobile-nav-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.className = 'mobile-nav-overlay';
-            document.body.appendChild(overlay);
-            overlay.addEventListener('click', toggleMenu);
-        }
         overlay.classList.toggle('active');
-
-        // Toggle body scroll
         body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
     }
 
-    // Add click event to hamburger
+    // Add click events
     hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
 
     // Close menu when clicking a link
     document.querySelectorAll('.mobile-nav a').forEach(link => {
