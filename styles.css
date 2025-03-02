@@ -999,7 +999,7 @@ h2::after {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
-@media (min-width: 769px) {
+@media (min-width: 300px) {
     .hamburger {
         display: none;
     }
