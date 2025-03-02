@@ -999,7 +999,7 @@ h2::after {
     text-align: center;
 }
 
-/* Hamburger Menu */
+/* Hamburger Menu - Base Styles */
 .hamburger {
     position: fixed;
     top: 15px;
@@ -1010,10 +1010,9 @@ h2::after {
     padding: 10px;
     border-radius: 50%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
     width: 40px;
     height: 40px;
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -1029,8 +1028,55 @@ h2::after {
     border-radius: 2px;
 }
 
+/* Hide on desktop */
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+    }
+}
+
+/* Show on mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+}
+
+/* Adjust size for smaller screens */
+@media (max-width: 480px) {
+    .hamburger {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        padding: 8px;
+    }
+
+    .hamburger span {
+        width: 20px;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 320px) {
+    .hamburger {
+        width: 32px;
+        height: 32px;
+        padding: 6px;
+    }
+
+    .hamburger span {
+        width: 18px;
+    }
+}
+
+/* Hamburger Animation */
 .hamburger.active {
-    right: 290px;
+    right: 270px;
 }
 
 .hamburger.active span:nth-child(1) {

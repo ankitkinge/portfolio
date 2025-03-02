@@ -38,6 +38,10 @@ function initMobileNavigation() {
         document.body.appendChild(overlay);
     }
 
+    // Ensure hamburger is visible on mobile
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    hamburger.style.display = isMobile ? 'flex' : 'none';
+
     // Set active link
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.mobile-nav a').forEach(link => {
@@ -74,7 +78,7 @@ function initMobileNavigation() {
     });
 
     // Handle resize events
-    const mobileMediaQuery = window.matchMedia('(max-width: 480px)');
+    const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
     
     function handleMobileChange(e) {
         hamburger.style.display = e.matches ? 'flex' : 'none';
