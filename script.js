@@ -158,8 +158,57 @@ const createParticleBackground = () => {
         hero.appendChild(particle);
     }
 };
+
 function toggleMenu() {
-    let mobileNav = document.getElementById("mobileNav");
-    mobileNav.classList.toggle("open");
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.querySelector('.mobile-nav-overlay');
+    const body = document.body;
+
+    hamburger.classList.toggle('active');
+    mobileNav.classList.toggle('open');
+    
+    // Toggle overlay
+    if (!overlay) {
+        const newOverlay = document.createElement('div');
+        newOverlay.className = 'mobile-nav-overlay';
+        document.body.appendChild(newOverlay);
+        
+        // Add click event to close menu when clicking overlay
+        newOverlay.addEventListener('click', toggleMenu);
+    } else {
+        overlay.classList.toggle('active');
+    }
+
+    // Toggle body scroll
+    body.style.overflow = body.style.overflow === 'hidden' ? '' : 'hidden';
 }
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.mobile-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+        const hamburger = document.querySelector('.hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+        const overlay = document.querySelector('.mobile-nav-overlay');
+        const body = document.body;
+
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('open');
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+        body.style.overflow = '';
+    });
+});
+
+// Close menu on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        const mobileNav = document.getElementById('mobileNav');
+        if (mobileNav.classList.contains('open')) {
+            toggleMenu();
+        }
+    }
+});
+
 createParticleBackground();
